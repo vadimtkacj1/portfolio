@@ -22,6 +22,9 @@ const App = () => {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white">
+             <Helmet>
+                <meta name="freelancehunt" content="79c1e4fa4630159" />
+            </Helmet> 
             <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             <HeroSection isVisible={isVisible} />
             <AboutSection isVisible={isVisible} />
