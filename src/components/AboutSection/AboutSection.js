@@ -18,7 +18,7 @@ const AboutSection = ({ isVisible }) => (
                     style={{ animationDelay: "0.2s" }}
                 >
                     <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-                        I am a Machine Learning Engineer with extensive experience in full-stack development, bringing over 0.5 years of expertise in building intelligent systems and AI-powered applications. My career began in full-stack development, where I built comprehensive web solutions, before transitioning to specialize in machine learning and artificial intelligence.
+                        I am a Machine Learning Engineer with extensive experience in full-stack development, bringing over 1 years of expertise in building intelligent systems and AI-powered applications. My career began in full-stack development, where I built comprehensive web solutions, before transitioning to specialize in machine learning and artificial intelligence.
                     </p>
 
                     <p className="text-lg text-gray-300 mb-6 leading-relaxed">
