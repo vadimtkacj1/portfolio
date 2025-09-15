@@ -58,7 +58,7 @@ const projectsData = [
     {
         title: "AI assistant",
         description: "A modern AI assistant featuring voice control, code generation. Built with Python and PyQt6, providing a seamless and intuitive interface for AI-powered tasks.",
-        tech: ["Python", "fastapi", "matplotlib", "seaborn", "matplotlib", "SpeechRecognition", "pillow", "opencv-python", "pygame"],
+        tech: ["Python", "fastapi", "matplotlib", "seaborn", "SpeechRecognition", "pillow", "opencv-python", "pygame"],
         github: "https://github.com/vadimtkacj1/ai-assistant",
         demo: null,
         hasDemo: false,
@@ -81,7 +81,7 @@ const projectsData = [
     },
     {
         title: "Clustering audio",
-        description: "Clustering audio by groups",
+        description: "Clustering audio by groups.",
         tech: ["Python", "torch", "librosa", "transformers", "Scikit-learn"],
         github: "https://github.com/vadimtkacj1/clustering-audio",
         demo: null,
@@ -114,7 +114,7 @@ const projectsData = [
     {
         title: "Fashion-MNIST CNN Classifier",
         description: "Convolutional Neural Network implementation for classifying Fashion-MNIST dataset images using PyTorch. This project includes comprehensive training analysis, visualization, and performance monitoring capabilities.",
-        tech: ["Python", "numpy", "scikit-learn", "torch", "torch", "seaborn"],
+        tech: ["Python", "numpy", "scikit-learn", "torch", "seaborn"],
         github: "https://github.com/vadimtkacj1/fashion-cnn",
         demo: null,
         hasDemo: false,
