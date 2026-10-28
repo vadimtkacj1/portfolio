@@ -8,9 +8,10 @@ export const SITE = {
 
 export const NAV = [
   { id: "work", label: "Work" },
-  { id: "about", label: "About" },
+  { page: "/services", label: "Services" },
+  { page: "/about", label: "About" },
   { page: "/playground", label: "Playground" },
-  { id: "contact", label: "Contact" },
+  { page: "/contact", label: "Contact" },
 ];
 
 export function navHref(item, path) {
@@ -107,19 +108,52 @@ export const GALLERY = [
 
 export const SERVICES = [
   {
+    slug: "llm-applications",
     title: "LLM applications",
     text: "Structured extraction, tool-calling assistants and LoRA / QLoRA fine-tuning, wired into real APIs instead of demos.",
     tools: ["Transformers", "PEFT", "bitsandbytes", "OpenAI", "Claude", "Gemini"],
+    lead: "Assistants, search over your documents and fine-tuned models that answer from your data, measured before they go live.",
+    deliverables: [
+      ["Search over your documents", "Retrieval-augmented generation with the retriever chosen by a benchmark on your own questions, not by habit."],
+      ["Structured extraction", "Turning free text, emails or forms into clean fields your systems can use, with validation."],
+      ["Fine-tuning", "LoRA and QLoRA adapters on open models such as Llama 3 when prompting alone is not enough."],
+      ["Evaluation", "A test set and a script that scores every change, so quality is a number and not an impression."],
+    ],
+    projects: ["rag-eval-service", "lora-fine-tuning-service", "real-estate-appraisal"],
+    description:
+      "LLM application development by Vadim Tkachenko: retrieval-augmented generation over your documents, structured extraction, LoRA fine-tuning and evaluation.",
   },
   {
+    slug: "computer-vision",
     title: "Computer vision",
     text: "Segmentation, retrieval and classification models: trained, evaluated with a number you can check, and visualised.",
     tools: ["PyTorch", "segmentation-models", "OpenCV", "CLIP", "Albumentations"],
+    lead: "Models that find, outline and compare what is in an image, trained on your data and judged by a metric you can check.",
+    deliverables: [
+      ["Segmentation", "Pixel-level masks for objects or regions, as in my retinal vessel and brain tumour models."],
+      ["Image search", "Find photos by a sentence or by a similar photo with CLIP embeddings."],
+      ["Classification", "Sort images into your categories, with the confusion matrix to show where it fails."],
+      ["Visual explanations", "Heatmaps and attention maps that show what the model looks at."],
+    ],
+    projects: ["vessel-segmentation", "brain-tumour-segmentation", "clip-retrieval"],
+    description:
+      "Computer vision development by Vadim Tkachenko: image segmentation, classification and CLIP image search in PyTorch, trained and evaluated on your data.",
   },
   {
+    slug: "recommenders-and-production",
     title: "Ranking & production",
     text: "Hybrid recommenders with diversity and cold start, served by FastAPI with the frontend that people actually use.",
     tools: ["scikit-learn", "implicit", "FastAPI", "Docker", "React", "Next.js"],
+    lead: "Recommendations and ranking that explain themselves, served by an API and an interface people use every day.",
+    deliverables: [
+      ["Recommender systems", "Content and collaborative signals combined, with a separate path for new users and diversity re-ranking."],
+      ["APIs and services", "FastAPI services on Postgres in Docker, with tests and continuous integration."],
+      ["Product frontend", "React and Next.js interfaces for the model, so it reaches users instead of a notebook."],
+      ["Deployment", "Running on your server or cloud, behind nginx, with the setup written down."],
+    ],
+    projects: ["hybrid-recommender", "rag-eval-service"],
+    description:
+      "Recommender systems and production ML by Vadim Tkachenko: hybrid ranking with cold start and diversity, FastAPI services, Docker and React frontends.",
   },
 ];
 

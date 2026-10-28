@@ -1,6 +1,6 @@
 import { CASES } from "./data/cases.js";
 import { GAMES } from "./data/games.js";
-import { PROJECTS } from "./data/site.js";
+import { PROJECTS, SERVICES } from "./data/site.js";
 
 export const ORIGIN = "https://portfolio-chi-teal-59.vercel.app";
 export const UPDATED = "2026-10-28";
@@ -53,6 +53,39 @@ export const ROUTES = [
     title: "Playground · Play with my models · Vadim Tkachenko",
     description:
       "Draw a digit and watch a neural network read it live in your browser, tell a human expert's retinal vessel mask from my segmentation model's, roll gradient descent into the global minimum, watch a neural network learn a decision boundary live, and try to beat a model that learns your habits.",
+  },
+  {
+    path: "/services",
+    title: "Services · LLM apps, computer vision, recommenders · Vadim Tkachenko",
+    description:
+      "Machine-learning services by AI engineer Vadim Tkachenko: LLM applications and RAG, computer vision, recommender systems and production ML, each measured and delivered as code you own.",
+  },
+  ...SERVICES.map((service) => ({
+    path: `/services/${service.slug}`,
+    title: `${service.title} · Services · Vadim Tkachenko`,
+    description: service.description,
+    jsonld: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: service.title,
+        description: service.description,
+        url: `${ORIGIN}/services/${service.slug}`,
+        provider: PERSON,
+        serviceType: service.title,
+      },
+    ],
+  })),
+  {
+    path: "/about",
+    title: "About · Vadim Tkachenko, AI Engineer",
+    description:
+      "About Vadim Tkachenko, an AI engineer with full-stack roots who builds LLM applications, computer vision models and recommender systems from training to product.",
+  },
+  {
+    path: "/contact",
+    title: "Contact · Vadim Tkachenko, AI Engineer",
+    description: "Contact AI engineer Vadim Tkachenko about a role or a freelance machine-learning project by email, LinkedIn or GitHub.",
   },
   ...GAMES.map((game) => ({
     path: `/playground/${game.slug}`,

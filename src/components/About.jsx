@@ -12,7 +12,11 @@ export default function About() {
           {SERVICES.map((service, index) => (
             <li key={service.title} className="reveal">
               <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
-              <h3>{service.title}</h3>
+              <h3>
+                <a href={`/services/${service.slug}`} data-cursor="Open">
+                  {service.title}
+                </a>
+              </h3>
               <p>{service.text}</p>
               <ul className="service-tools" aria-label={`${service.title} tools`}>
                 {service.tools.map((tool) => (

@@ -4,10 +4,14 @@ import Cursor from "./components/Cursor.jsx";
 import Curtain from "./components/Curtain.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
 import CaseStudy from "./pages/CaseStudy.jsx";
+import Contact from "./pages/Contact.jsx";
 import Game from "./pages/Game.jsx";
 import Home from "./pages/Home.jsx";
 import Playground from "./pages/Playground.jsx";
+import Service from "./pages/Service.jsx";
+import Services from "./pages/Services.jsx";
 
 export default function App({ path }) {
   useEffect(() => {
@@ -30,7 +34,15 @@ export default function App({ path }) {
     <>
       <Header path={path} />
       <main>
-        {path === "/playground" ? (
+        {path === "/services" ? (
+          <Services />
+        ) : path.startsWith("/services/") ? (
+          <Service slug={path.slice(10)} />
+        ) : path === "/about" ? (
+          <AboutPage />
+        ) : path === "/contact" ? (
+          <Contact />
+        ) : path === "/playground" ? (
           <Playground />
         ) : path.startsWith("/playground/") ? (
           <Game slug={path.slice(12)} />

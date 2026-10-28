@@ -40,7 +40,7 @@ export default function Header({ path }) {
             {NAV.map((item) => (
               <li key={item.label}>
                 <Magnetic strength={0.25}>
-                  <a href={navHref(item, path)} aria-current={item.page === path ? "page" : undefined}>
+                  <a href={navHref(item, path)} aria-current={item.page && (path === item.page || path.startsWith(`${item.page}/`)) ? "page" : undefined}>
                     <span data-magnetic-label>{item.label}</span>
                   </a>
                 </Magnetic>
