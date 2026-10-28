@@ -123,7 +123,10 @@ export default function HalftonePortrait() {
         frame = 0;
         if (!start) start = now;
         const intro = reduced ? 1 : Math.min(1, (now - start) / 1500);
-        const scroll = Math.min(1, window.scrollY / Math.max(1, window.innerHeight));
+        const rect = canvas.getBoundingClientRect();
+        const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        const scroll = reduced ? 0 : Math.min(1, Math.max(0, Math.abs(offset) * 1.8 - 0.25));
+        const direction = offset > 0 ? 1 : -1;
         let moving = intro < 1 || scroll !== lastScroll;
         lastScroll = scroll;
 
@@ -178,8 +181,8 @@ export default function HalftonePortrait() {
           dot.ox *= 0.88;
           dot.oy *= 0.88;
           if (Math.abs(dot.ox) > 0.05 || Math.abs(dot.oy) > 0.05) moving = true;
-          x += dot.ox + dot.sway * scroll * width * 0.18;
-          y += dot.oy - scroll * height * (0.08 + dot.drift * 0.32);
+          x += dot.ox + dot.sway * scroll * width * 0.3;
+          y += dot.oy + direction * scroll * height * (0.08 + dot.drift * 0.4);
           const r = dot.size * cell * reveal * (1 - scroll * 0.55);
           if (r < 0.2) continue;
           context.moveTo(x + r, y);
