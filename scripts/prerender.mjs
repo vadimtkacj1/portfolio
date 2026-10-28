@@ -4,7 +4,14 @@ import { pathToFileURL } from "node:url";
 
 const dist = path.resolve("dist");
 const ssr = path.resolve("dist-ssr");
-const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
+const template = fs
+  .readFileSync(path.join(dist, "index.html"), "utf8")
+  .replace(/<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/, (tag, href) => {
+    const css = fs.readFileSync(path.join(dist, href), "utf8");
+    const latin = css.match(/\/assets\/inter-tight-latin-wght-normal-[^)"']+\.woff2/);
+    const preload = latin ? `<link rel="preload" href="${latin[0]}" as="font" type="font/woff2" crossorigin>` : "";
+    return `${preload}<style>${css}</style>`;
+  });
 const { render, ROUTES, ORIGIN, UPDATED } = await import(pathToFileURL(path.join(ssr, "entry-server.js")).href);
 
 if (!template.includes("<!--app-html-->")) {
