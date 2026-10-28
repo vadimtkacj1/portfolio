@@ -95,18 +95,14 @@ export const PROJECTS = [
 ];
 
 export const GALLERY = [
-  [
-    { src: "/images/vessel-panel-a-0.webp", width: 676, height: 640, alt: "Retinal fundus photograph, the model input" },
-    { src: "/images/brain-mri-channels.webp", width: 900, height: 965, alt: "Four MRI sequences of one brain slice" },
-    { src: "/images/vessel-panel-a-3.webp", width: 676, height: 640, alt: "Predicted vessel heatmap" },
-    { src: "/images/brain-tumour-attention.webp", width: 820, height: 837, alt: "Attention maps of the Attention U-Net" },
-  ],
-  [
-    { src: "/images/vessel-panel-a-2.webp", width: 676, height: 640, alt: "Predicted vessel mask" },
-    { src: "/images/brain-tumour-regions.webp", width: 964, height: 409, alt: "Predicted necrotic core, edema and enhancing tumour" },
-    { src: "/images/vessel-panel-b-0.webp", width: 676, height: 640, alt: "Second fundus photograph" },
-    { src: "/images/vessel-panel-b-3.webp", width: 676, height: 640, alt: "Vessel heatmap for the second sample" },
-  ],
+  { src: "/images/vessel-panel-a-0.webp", width: 676, height: 640, title: "Input", note: "Retinal fundus photograph", project: "Vessel segmentation" },
+  { src: "/images/vessel-panel-a-2.webp", width: 676, height: 640, title: "Prediction", note: "Vessel mask from DeepLabV3+", project: "Vessel segmentation", dark: true },
+  { src: "/images/vessel-panel-a-3.webp", width: 676, height: 640, title: "Confidence", note: "Per-pixel vessel heatmap", project: "Vessel segmentation" },
+  { src: "/images/brain-mri-channels.webp", width: 900, height: 965, title: "Input", note: "Four MRI sequences of one slice", project: "Brain tumour", dark: true },
+  { src: "/images/brain-tumour-regions.webp", width: 964, height: 409, title: "Prediction", note: "Necrotic core, edema, enhancing tumour", project: "Brain tumour", dark: true },
+  { src: "/images/brain-tumour-attention.webp", width: 820, height: 837, title: "Attention", note: "What four decoder levels look at", project: "Brain tumour" },
+  { src: "/images/clip-search.webp", width: 1600, height: 335, title: "Retrieval", note: "Top five CLIP results for a text query", project: "CLIP search" },
+  { src: "/images/vessel-panel-b-3.webp", width: 676, height: 640, title: "Prediction", note: "A second test sample", project: "Vessel segmentation", dark: true },
 ];
 
 export const SERVICES = [

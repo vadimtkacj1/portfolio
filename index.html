@@ -42,6 +42,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
 
+    <script>
+      try {
+        var seen = sessionStorage.getItem("vt-seen");
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add(seen ? "is-entering" : "is-loading");
+        sessionStorage.setItem("vt-seen", "1");
+      } catch (error) {}
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

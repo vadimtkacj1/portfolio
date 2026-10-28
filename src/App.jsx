@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import CommandPalette from "./components/CommandPalette.jsx";
+import Cursor from "./components/Cursor.jsx";
+import Curtain from "./components/Curtain.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import Home from "./pages/Home.jsx";
@@ -18,7 +20,7 @@ export default function App({ path }) {
       },
       { rootMargin: "0px 0px -8% 0px" },
     );
-    for (const element of document.querySelectorAll(".reveal")) observer.observe(element);
+    for (const element of document.querySelectorAll(".reveal, .reveal-split")) observer.observe(element);
     return () => observer.disconnect();
   }, []);
 
@@ -28,6 +30,8 @@ export default function App({ path }) {
       <main>{path === "/playground" ? <Playground /> : <Home />}</main>
       <Footer />
       <CommandPalette path={path} />
+      <Cursor />
+      <Curtain />
     </>
   );
 }

@@ -1,5 +1,7 @@
+import DescentGame from "../components/DescentGame.jsx";
 import DigitGame from "../components/DigitGame.jsx";
 import SpotGame from "../components/SpotGame.jsx";
+import SplitWords from "../components/SplitWords.jsx";
 
 export default function Playground() {
   return (
@@ -7,12 +9,12 @@ export default function Playground() {
       <section className="page-hero" aria-labelledby="playground-title">
         <div className="container">
           <p className="section-label">Playground</p>
-          <h1 id="playground-title" className="page-title">
-            Play with my models
+          <h1 id="playground-title" className="page-title reveal-split">
+            <SplitWords text="Play with my models" />
           </h1>
           <p className="page-lead">
-            Two small games built on models I trained. Nothing is sent to a server: the network for the first one runs
-            in your browser, the second one uses real test outputs from my vessel segmentation model.
+            Three small games about how models learn and what they see. Nothing is sent to a server: everything runs in
+            your browser, on models I trained and outputs from my own projects.
           </p>
         </div>
       </section>
@@ -43,6 +45,22 @@ export default function Playground() {
             </p>
           </div>
           <SpotGame />
+        </div>
+      </section>
+
+      <section className="game section" aria-labelledby="descent-title">
+        <div className="container">
+          <div className="game-head">
+            <span className="service-index">03</span>
+            <h2 id="descent-title" className="game-title">
+              Descent
+            </h2>
+            <p>
+              Training is a ball rolling downhill on a loss landscape. Pick a start, a learning rate and momentum, and
+              try to reach the deepest basin in as few steps as you can.
+            </p>
+          </div>
+          <DescentGame />
         </div>
       </section>
     </>

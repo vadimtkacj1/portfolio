@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { SITE } from "../data/site.js";
 import { clamp, onScrollFrame, prefersReducedMotion } from "../hooks/scrollLoop.js";
 import Magnetic from "./Magnetic.jsx";
+import SplitWords from "./SplitWords.jsx";
 
 export default function Footer() {
   const capRef = useRef(null);
@@ -35,9 +36,9 @@ export default function Footer() {
       </div>
       <div className="container footer-inner">
         <div className="footer-head">
-          <h2 id="contact-title" className="footer-title">
+          <h2 id="contact-title" className="footer-title reveal-split">
             <img src="/images/vadim-tkachenko-480.webp" width="96" height="96" alt="" className="footer-avatar" />
-            Let's work together
+            <SplitWords text="Let's work together" />
           </h2>
           <ArrowDownLeft className="footer-arrow" size={28} strokeWidth={1.3} aria-hidden="true" />
         </div>

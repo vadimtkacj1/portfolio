@@ -1,11 +1,12 @@
 import { EXPERIENCE, SERVICES } from "../data/site.js";
+import SplitWords from "./SplitWords.jsx";
 
 export default function About() {
   return (
     <section className="about section" id="about" aria-labelledby="about-title">
       <div className="container">
-        <h2 id="about-title" className="section-heading reveal">
-          I can help you with
+        <h2 id="about-title" className="section-heading reveal-split">
+          <SplitWords text="I can help you with" />
         </h2>
         <ol className="services">
           {SERVICES.map((service, index) => (

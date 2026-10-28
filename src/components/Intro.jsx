@@ -1,6 +1,7 @@
 import { METRICS } from "../data/site.js";
 import CountUp from "./CountUp.jsx";
 import HalftonePortrait from "./HalftonePortrait.jsx";
+import SplitWords from "./SplitWords.jsx";
 import Magnetic from "./Magnetic.jsx";
 
 export default function Intro() {
@@ -11,9 +12,8 @@ export default function Intro() {
           <HalftonePortrait />
         </figure>
         <div className="intro-copy">
-          <h2 id="intro-title" className="intro-statement reveal">
-            A model is half the job. I build the data pipeline, the training, the API and the interface around it,
-            and measure every step before it ships.
+          <h2 id="intro-title" className="intro-statement reveal-split">
+            <SplitWords text="A model is half the job. I build the data pipeline, the training, the API and the interface around it, and measure every step before it ships." />
           </h2>
           <div className="intro-side">
             <p className="reveal">

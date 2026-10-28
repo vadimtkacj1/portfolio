@@ -8,14 +8,13 @@ import ProjectMedia from "./ProjectMedia.jsx";
 export default function WorkList() {
   const [active, setActive] = useState(-1);
   const previewRef = useRef(null);
-  const cursorRef = useRef(null);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return undefined;
     const reduced = prefersReducedMotion();
     const target = { x: 0, y: 0 };
     const preview = { x: 0, y: 0 };
-    const cursor = { x: 0, y: 0 };
+    let tilt = 0;
     let frame = 0;
     const onMove = (event) => {
       target.x = event.clientX;
@@ -23,12 +22,11 @@ export default function WorkList() {
     };
     const tick = () => {
       const ease = reduced ? 1 : 0.12;
-      preview.x += (target.x - preview.x) * ease;
+      const dx = target.x - preview.x;
+      preview.x += dx * ease;
       preview.y += (target.y - preview.y) * ease;
-      cursor.x += (target.x - cursor.x) * (reduced ? 1 : 0.28);
-      cursor.y += (target.y - cursor.y) * (reduced ? 1 : 0.28);
-      previewRef.current.style.transform = `translate3d(${preview.x}px, ${preview.y}px, 0)`;
-      cursorRef.current.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0)`;
+      tilt += ((reduced ? 0 : Math.max(-12, Math.min(12, dx * 0.06))) - tilt) * 0.15;
+      previewRef.current.style.transform = `translate3d(${preview.x}px, ${preview.y}px, 0) rotate(${tilt.toFixed(2)}deg)`;
       frame = requestAnimationFrame(tick);
     };
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -53,6 +51,7 @@ export default function WorkList() {
                 target="_blank"
                 rel="noopener"
                 className="work-row"
+                data-cursor="View"
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
                 onBlur={() => setActive(-1)}
@@ -92,9 +91,6 @@ export default function WorkList() {
             ))}
           </div>
         </div>
-      </div>
-      <div className={`work-cursor ${active >= 0 ? "is-visible" : ""}`} ref={cursorRef} aria-hidden="true">
-        <span>View</span>
       </div>
     </section>
   );
