@@ -1134,6 +1134,23 @@ html.js .reveal.is-visible {
   margin-left: auto;
 }
 
+.footer-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--white);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.footer-shortcut:hover kbd {
+  border-color: var(--white);
+}
+
 kbd {
   padding: 1px 7px;
   border: 1px solid var(--dark-line);

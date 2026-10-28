@@ -31,8 +31,8 @@ export default function Header() {
         <a className="header-logo" href="#top" aria-label="Vadim Tkachenko, back to top">
           <span className="header-copy">©</span>
           <span className="header-name">
-            <span>Vadim Tkachenko</span>
-            <span>AI Engineer</span>
+            <span>V.T.</span>
+            <span>Back to top</span>
           </span>
         </a>
         <nav aria-label="Sections">

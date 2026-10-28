@@ -88,9 +88,9 @@ export default function Footer() {
           </div>
           <div className="footer-hint">
             <p className="footer-small-label">Shortcut</p>
-            <p>
+            <button type="button" className="footer-shortcut" onClick={() => window.dispatchEvent(new Event("open-palette"))}>
               <kbd>Ctrl</kbd> <kbd>K</kbd> to jump anywhere
-            </p>
+            </button>
           </div>
         </div>
       </div>

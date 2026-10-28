@@ -9,7 +9,6 @@ export default function Intro() {
       <div className="container intro-grid">
         <figure className="intro-portrait">
           <HalftonePortrait />
-          <figcaption>Hover the portrait</figcaption>
         </figure>
         <div className="intro-copy">
           <h2 id="intro-title" className="intro-statement reveal">
