@@ -38,6 +38,11 @@ export default function PlaygroundTeaser() {
             <h3>Beat the model</h3>
             <p>Rock, paper, scissors against a model that learns your habits as you play.</p>
           </li>
+          <li className="reveal">
+            <span className="service-index">06</span>
+            <h3>Be a convolution</h3>
+            <p>Write a 3 × 3 filter and watch the feature map a CNN would see.</p>
+          </li>
         </ul>
         <Magnetic strength={0.4} className="teaser-button">
           <a className="circle-button circle-blue" href="/playground" data-cursor="Play">

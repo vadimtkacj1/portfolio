@@ -1,4 +1,5 @@
 import BoundaryGame from "../components/BoundaryGame.jsx";
+import ConvolutionGame from "../components/ConvolutionGame.jsx";
 import DescentGame from "../components/DescentGame.jsx";
 import DigitGame from "../components/DigitGame.jsx";
 import PatternGame from "../components/PatternGame.jsx";
@@ -15,7 +16,7 @@ export default function Playground() {
             <SplitWords text="Play with my models" />
           </h1>
           <p className="page-lead">
-            Five small games about how models learn and what they see. Nothing is sent to a server: everything runs in
+            Six small games about how models learn and what they see. Nothing is sent to a server: everything runs in
             your browser, on models I trained and outputs from my own projects.
           </p>
         </div>
@@ -95,6 +96,22 @@ export default function Playground() {
             </p>
           </div>
           <PatternGame />
+        </div>
+      </section>
+
+      <section className="game section" aria-labelledby="conv-title">
+        <div className="container">
+          <div className="game-head">
+            <span className="service-index">06</span>
+            <h2 id="conv-title" className="game-title">
+              Be a convolution
+            </h2>
+            <p>
+              Write the 3 × 3 filter yourself and see the feature map a convolutional network would compute from a
+              retinal scan, or from your own photo.
+            </p>
+          </div>
+          <ConvolutionGame />
         </div>
       </section>
     </>
