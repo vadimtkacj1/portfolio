@@ -1705,6 +1705,56 @@ kbd {
   font-size: 15px;
 }
 
+.boundary-map {
+  cursor: copy;
+  background: var(--paper);
+}
+
+.boundary-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.boundary-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.boundary-tab:hover {
+  border-color: var(--ink);
+}
+
+.boundary-tab.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+.boundary-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--white);
+}
+
+.boundary-dot-0 {
+  background: var(--ink);
+}
+
+.boundary-dot-1 {
+  background: var(--blue);
+}
+
 .teaser {
   padding-top: 0;
 }

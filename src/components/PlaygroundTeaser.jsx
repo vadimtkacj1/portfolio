@@ -28,6 +28,11 @@ export default function PlaygroundTeaser() {
             <h3>Descent</h3>
             <p>Tune the learning rate and momentum and roll a model into the global minimum.</p>
           </li>
+          <li className="reveal">
+            <span className="service-index">04</span>
+            <h3>Draw the boundary</h3>
+            <p>Place points and watch a neural network learn to separate them in real time.</p>
+          </li>
         </ul>
         <Magnetic strength={0.4} className="teaser-button">
           <a className="circle-button circle-blue" href="/playground" data-cursor="Play">

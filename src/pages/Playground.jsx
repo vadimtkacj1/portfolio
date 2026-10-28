@@ -1,3 +1,4 @@
+import BoundaryGame from "../components/BoundaryGame.jsx";
 import DescentGame from "../components/DescentGame.jsx";
 import DigitGame from "../components/DigitGame.jsx";
 import SpotGame from "../components/SpotGame.jsx";
@@ -13,7 +14,7 @@ export default function Playground() {
             <SplitWords text="Play with my models" />
           </h1>
           <p className="page-lead">
-            Three small games about how models learn and what they see. Nothing is sent to a server: everything runs in
+            Four small games about how models learn and what they see. Nothing is sent to a server: everything runs in
             your browser, on models I trained and outputs from my own projects.
           </p>
         </div>
@@ -61,6 +62,22 @@ export default function Playground() {
             </p>
           </div>
           <DescentGame />
+        </div>
+      </section>
+
+      <section className="game section" aria-labelledby="boundary-title">
+        <div className="container">
+          <div className="game-head">
+            <span className="service-index">04</span>
+            <h2 id="boundary-title" className="game-title">
+              Draw the boundary
+            </h2>
+            <p>
+              A small neural network learns to separate blue points from black ones while you watch. Click to add
+              points, change its width, and find the smallest network that still solves the spiral.
+            </p>
+          </div>
+          <BoundaryGame />
         </div>
       </section>
     </>
