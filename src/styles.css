@@ -1481,11 +1481,6 @@ kbd {
   gap: 24px;
 }
 
-.spot-top {
-  display: flex;
-  justify-content: space-between;
-}
-
 .spot-progress {
   font-size: 14px;
   letter-spacing: 0.06em;

@@ -151,7 +151,9 @@ export default function DigitGame() {
   };
 
   const onDown = (event) => {
-    event.currentTarget.setPointerCapture(event.pointerId);
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {}
     drawing.current = true;
     last.current = point(event);
     const context = boardRef.current.getContext("2d");

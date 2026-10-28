@@ -11,11 +11,11 @@ export const ROUTES = [
     path: "/playground",
     title: "Playground · Play with my models · Vadim Tkachenko",
     description:
-      "Draw a digit and watch a neural network read it live in your browser, then try to tell a doctor's retinal vessel mask from my segmentation model's.",
+      "Draw a digit and watch a neural network read it live in your browser, then try to tell a human expert's retinal vessel mask from my segmentation model's.",
   },
 ];
 
 export function normalisePath(pathname) {
-  const trimmed = pathname.replace(/\/+$/, "");
+  const trimmed = pathname.replace(/\.html$/, "").replace(/\/index$/, "").replace(/\/+$/, "");
   return ROUTES.some((route) => route.path === trimmed) ? trimmed : "/";
 }

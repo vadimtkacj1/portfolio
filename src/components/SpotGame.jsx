@@ -72,12 +72,9 @@ export default function SpotGame() {
 
   return (
     <div className="spot-game">
-      <div className="spot-top">
-        <p className="spot-progress">
-          Round {index + 1} of {rounds.length}
-        </p>
-        <p className="spot-progress">Score {score}</p>
-      </div>
+      <p className="spot-progress">
+        Round {index + 1} of {rounds.length} · Score {score}
+      </p>
       <div className="spot-grid">
         <figure className="spot-photo">
           <img src={`/images/game/vessel-${round.id}-photo.webp`} width="360" height="340" alt="Retinal fundus photograph" />
