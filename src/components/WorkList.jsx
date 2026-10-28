@@ -66,7 +66,7 @@ export default function WorkList() {
                 <div className="work-inline-media" aria-hidden="true">
                   <ProjectMedia media={project.media} />
                 </div>
-                <span className="visually-hidden">— {project.title}, code on GitHub</span>
+                <span className="visually-hidden">. {project.title}. Code on GitHub.</span>
               </a>
             </li>
           ))}

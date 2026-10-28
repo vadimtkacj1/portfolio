@@ -13,7 +13,7 @@ export default function Intro() {
         </figure>
         <div className="intro-copy">
           <h2 id="intro-title" className="intro-statement reveal">
-            A model is half the job. I build the data pipeline, the training, the API and the interface around it —
+            A model is half the job. I build the data pipeline, the training, the API and the interface around it,
             and measure every step before it ships.
           </h2>
           <div className="intro-side">

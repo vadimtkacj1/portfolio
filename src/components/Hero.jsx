@@ -24,7 +24,7 @@ export default function Hero() {
             </span>
           </div>
           <p className="hero-lead">
-            I turn machine-learning models into products people use — from training to the API and the interface.
+            I turn machine-learning models into products people use, from training to the API and the interface.
           </p>
           <Magnetic strength={0.35} className="hero-scroll">
             <a className="circle-button circle-dark circle-small" href="#work" aria-label="Scroll to selected work">

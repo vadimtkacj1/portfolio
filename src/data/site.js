@@ -27,7 +27,7 @@ export const PROJECTS = [
   {
     slug: "hybrid-recommender",
     name: "Social Search",
-    title: "Social Search — hybrid people recommender",
+    title: "Social Search: hybrid people recommender",
     category: "Recommender · Thesis",
     result: "TF-IDF + embeddings + ALS, MMR",
     summary:
@@ -110,7 +110,7 @@ export const SERVICES = [
   },
   {
     title: "Computer vision",
-    text: "Segmentation, retrieval and classification models — trained, evaluated with a number you can check, and visualised.",
+    text: "Segmentation, retrieval and classification models: trained, evaluated with a number you can check, and visualised.",
     tools: ["PyTorch", "segmentation-models", "OpenCV", "CLIP", "Albumentations"],
   },
   {
