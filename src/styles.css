@@ -1973,6 +1973,7 @@ html.is-loading .curtain-label {
     width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
     scrollbar-width: none;
   }
 
