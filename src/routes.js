@@ -13,6 +13,7 @@ function caseRoute(project) {
     path,
     title: `${project.title} · Case study · Vadim Tkachenko`,
     description: `${project.summary} ${data.facts.map(([label, value]) => `${label}: ${value}.`).join(" ")}`.slice(0, 300),
+    image: `${ORIGIN}/og/${project.slug}.png`,
     jsonld: [
       {
         "@context": "https://schema.org",

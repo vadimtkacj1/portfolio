@@ -16,9 +16,11 @@ const escape = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;
 const safeJson = (data) => JSON.stringify(data).replaceAll("<", "\\u003c");
 
 function withHead(html, route) {
+  const image = route.image ?? `${ORIGIN}/og.png`;
   const url = `${ORIGIN}${route.path === "/" ? "/" : route.path}`;
   return html
-    .replace(/<title>[^<]*<\/title>/, `<title>${escape(route.title)}</title>`)
+    .replaceAll(`${ORIGIN}/og.png`, image)
+    .replace(/<title>[^<]*<\/title>/,`<title>${escape(route.title)}</title>`)
     .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${escape(route.description)}$2`)
     .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`)
     .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`)
