@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://portfolio-chi-teal-59.vercel.app/sitemap.xml
