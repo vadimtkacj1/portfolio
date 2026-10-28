@@ -14,6 +14,17 @@ export const NAV = [
 
 export const PROJECTS = [
   {
+    slug: "rag-eval-service",
+    name: "RAG Eval",
+    title: "RAG service with a retrieval benchmark",
+    category: "LLM · Retrieval",
+    result: "nDCG@10 0.713 · 6 pipelines",
+    summary:
+      "Six retrieval pipelines measured on BEIR SciFact before one goes behind the API: the hybrid wins Recall@5, and an out-of-domain reranker makes results worse.",
+    repo: "https://github.com/vadimtkacj1/rag-eval-service",
+    media: { type: "table" },
+  },
+  {
     slug: "hybrid-recommender",
     name: "Social Search",
     title: "Social Search — hybrid people recommender",
@@ -113,7 +124,7 @@ export const METRICS = [
   { value: "0.944", label: "pixel IoU, vessel segmentation" },
   { value: "8", suffix: "B", label: "parameter Llama 3, QLoRA-tuned" },
   { value: "3", label: "ranking signals in one recommender" },
-  { value: "6", label: "projects with public code" },
+  { value: "7", label: "projects with public code" },
 ];
 
 export const EXPERIENCE = [

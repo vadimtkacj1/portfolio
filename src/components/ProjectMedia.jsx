@@ -136,9 +136,45 @@ function Flow() {
   );
 }
 
+const RESULTS = [
+  ["BM25", "0.652", "0.728"],
+  ["Dense · bge-small", "0.713", "0.759"],
+  ["Hybrid · RRF", "0.709", "0.765"],
+  ["Hybrid → reranker", "0.697", "0.748"],
+];
+
+function ResultsTable() {
+  return (
+    <div className="media-frame media-table">
+      <div className="window-bar">
+        <span>results/scifact.md</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Retrieval</th>
+            <th scope="col">nDCG@10</th>
+            <th scope="col">Recall@5</th>
+          </tr>
+        </thead>
+        <tbody>
+          {RESULTS.map(([name, ndcg, recall]) => (
+            <tr key={name}>
+              <th scope="row">{name}</th>
+              <td className={ndcg === "0.713" ? "is-best" : undefined}>{ndcg}</td>
+              <td className={recall === "0.765" ? "is-best" : undefined}>{recall}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function ProjectMedia({ media }) {
   if (media.type === "image") return <ParallaxImage {...media} />;
   if (media.type === "pipeline") return <Pipeline />;
   if (media.type === "code") return <CodeWindow />;
+  if (media.type === "table") return <ResultsTable />;
   return <Flow />;
 }
