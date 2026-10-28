@@ -1,4 +1,5 @@
 import { CASES } from "./data/cases.js";
+import { ARTICLES } from "./data/articles.js";
 import { GAMES } from "./data/games.js";
 import { PROJECTS, SERVICES } from "./data/site.js";
 
@@ -77,6 +78,30 @@ export const ROUTES = [
     ],
   })),
   {
+    path: "/writing",
+    title: "Writing · Notes from ML benchmarks · Vadim Tkachenko",
+    description: "Short write-ups by AI engineer Vadim Tkachenko on what his own benchmarks showed: retrieval for RAG, rerankers and segmentation metrics, with numbers and code.",
+  },
+  ...ARTICLES.map((article) => ({
+    path: `/writing/${article.slug}`,
+    title: `${article.title} · Vadim Tkachenko`,
+    description: article.summary,
+    jsonld: [
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: article.title,
+        description: article.summary,
+        datePublished: article.date,
+        dateModified: article.date,
+        url: `${ORIGIN}/writing/${article.slug}`,
+        mainEntityOfPage: `${ORIGIN}/writing/${article.slug}`,
+        author: PERSON,
+        image: `${ORIGIN}/og.png`,
+      },
+    ],
+  })),
+  {
     path: "/about",
     title: "About · Vadim Tkachenko, AI Engineer",
     description:
@@ -85,7 +110,7 @@ export const ROUTES = [
   {
     path: "/contact",
     title: "Contact · Vadim Tkachenko, AI Engineer",
-    description: "Contact AI engineer Vadim Tkachenko about a role or a freelance machine-learning project by email, LinkedIn or GitHub.",
+    description: "Contact AI engineer Vadim Tkachenko about a remote role or a freelance machine-learning project by email, LinkedIn or GitHub.",
   },
   ...GAMES.map((game) => ({
     path: `/playground/${game.slug}`,

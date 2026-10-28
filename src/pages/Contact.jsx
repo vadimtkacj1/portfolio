@@ -25,7 +25,7 @@ export default function Contact() {
           <h1 id="contact-title" className="page-title reveal-split">
             <SplitWords text="Let's talk" />
           </h1>
-          <p className="page-lead">Open to AI engineering roles and freelance projects.</p>
+          <p className="page-lead">Open to remote AI engineering roles and freelance projects.</p>
         </div>
       </section>
 

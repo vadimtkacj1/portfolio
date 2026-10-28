@@ -10,6 +10,7 @@ export const NAV = [
   { id: "work", label: "Work" },
   { page: "/services", label: "Services" },
   { page: "/about", label: "About" },
+  { page: "/writing", label: "Writing" },
   { page: "/playground", label: "Playground" },
   { page: "/contact", label: "Contact" },
 ];

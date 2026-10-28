@@ -5,6 +5,7 @@ import Curtain from "./components/Curtain.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
+import Article from "./pages/Article.jsx";
 import CaseStudy from "./pages/CaseStudy.jsx";
 import Contact from "./pages/Contact.jsx";
 import Game from "./pages/Game.jsx";
@@ -12,6 +13,7 @@ import Home from "./pages/Home.jsx";
 import Playground from "./pages/Playground.jsx";
 import Service from "./pages/Service.jsx";
 import Services from "./pages/Services.jsx";
+import Writing from "./pages/Writing.jsx";
 
 export default function App({ path }) {
   useEffect(() => {
@@ -34,7 +36,11 @@ export default function App({ path }) {
     <>
       <Header path={path} />
       <main>
-        {path === "/services" ? (
+        {path === "/writing" ? (
+          <Writing />
+        ) : path.startsWith("/writing/") ? (
+          <Article slug={path.slice(9)} />
+        ) : path === "/services" ? (
           <Services />
         ) : path.startsWith("/services/") ? (
           <Service slug={path.slice(10)} />
