@@ -62,4 +62,13 @@ export const GAMES = [
     description:
       "Fit a polynomial to noisy data and watch training error fall while test error explodes: an interactive lesson in overfitting and generalisation.",
   },
+  {
+    slug: "diversity-dial",
+    title: "Diversity dial",
+    topic: "Recommender systems",
+    teaser: "Turn one dial and watch a recommender trade relevance for variety, the way MMR does.",
+    lead: "Six people get recommended to you. Turn λ down and Maximal Marginal Relevance swaps near-copies of you for matches from other interests. Find the balance.",
+    description:
+      "Play with Maximal Marginal Relevance: turn the λ dial and watch a people recommender trade relevance for diversity, the re-ranking my thesis recommender uses.",
+  },
 ];

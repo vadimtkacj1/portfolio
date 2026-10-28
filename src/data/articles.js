@@ -1,5 +1,55 @@
 export const ARTICLES = [
   {
+    slug: "hybrid-recommender-people-matching",
+    title: "Matching people by what they watch: a hybrid recommender",
+    date: "2026-10-28",
+    topic: "Recommender systems",
+    project: "hybrid-recommender",
+    summary:
+      "How my thesis recommender matches people by YouTube history: TF-IDF and sentence embeddings for content, ALS for taste, adaptive weights, MMR for diversity and a cold-start path.",
+    sections: [
+      {
+        paragraphs: [
+          "Social Search finds people with similar interests from their YouTube watch history. A user connects YouTube or uploads a Google Takeout export, the system builds an interest profile, ranks other users, explains every match and lets matched people talk in real-time chat. It was my bachelor's thesis, built as a full product rather than a notebook.",
+          "Recommending people is harder than recommending videos. Two people can share a taste without watching a single video in common, a new user has almost no history, and a list of ten near-identical matches is useless. Each of those problems got its own part of the pipeline.",
+        ],
+      },
+      {
+        heading: "Two views of the same history",
+        paragraphs: [
+          "Every user gets two content vectors. The first is TF-IDF over video titles, channels, tags and categories: it catches exact overlaps such as the same channel or a rare keyword. The second is a dense embedding from a sentence-transformer, all-MiniLM-L6-v2 by default: it catches meaning, so a person watching chess openings lands near a person watching endgame lectures.",
+          "Recent views weigh more. Both profiles use exponential time decay with a half-life of about 35 days, so what someone watched last month counts for more than what they watched two years ago.",
+        ],
+      },
+      {
+        heading: "Taste that words miss",
+        paragraphs: [
+          "Content vectors only see text. To capture taste, a User × Channel matrix is factorised with ALS from the implicit library, with 32 factors and confidence α = 40. Users who watch the same channels end up close in that space even when their video titles share no words.",
+        ],
+      },
+      {
+        heading: "One score, adaptive weights",
+        paragraphs: [
+          "The final score combines content similarity, the share of overlapping videos and the ALS similarity. Weights start at 0.7 for content and 0.3 for overlap and adapt per user to history size and category diversity. The collaborative term joins only once there is enough interaction data, and all weights are renormalised to sum to one.",
+        ],
+      },
+      {
+        heading: "Diversity and new users",
+        paragraphs: [
+          "Sorting by score alone puts near-copies at the top. Maximal Marginal Relevance with λ = 0.7 re-ranks the list, trading a little relevance for variety, so the feed shows different kinds of people who share your interests. You can try the same trade-off in the Diversity dial game in my playground.",
+          "Users with fewer than ten videos do not have enough history for vectors to mean much. They take a separate cold-start path that matches on shared interest categories and popularity.",
+        ],
+      },
+      {
+        heading: "Explaining every match",
+        paragraphs: [
+          "Each match returns its breakdown: content similarity, shared videos, collaborative similarity, the weights that were used and a match-strength label. For a feature that suggests people to talk to, being able to say why matters as much as the ranking itself.",
+          "Three algorithms, TF-IDF, semantic and hybrid, run side by side, and a script benchmarks two embedding models with Precision@k, MAP@5 and nDCG@5. The code is public.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "bm25-vs-dense-vs-hybrid-retrieval",
     title: "BM25, dense or hybrid: which retriever should a RAG system use?",
     date: "2026-10-28",

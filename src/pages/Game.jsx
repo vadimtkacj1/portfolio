@@ -2,6 +2,7 @@ import BoundaryGame from "../components/BoundaryGame.jsx";
 import ConvolutionGame from "../components/ConvolutionGame.jsx";
 import DescentGame from "../components/DescentGame.jsx";
 import DigitGame from "../components/DigitGame.jsx";
+import DiversityGame from "../components/DiversityGame.jsx";
 import OverfitGame from "../components/OverfitGame.jsx";
 import PatternGame from "../components/PatternGame.jsx";
 import SpotGame from "../components/SpotGame.jsx";
@@ -16,6 +17,7 @@ const COMPONENTS = {
   "beat-the-model": PatternGame,
   "be-a-convolution": ConvolutionGame,
   overfit: OverfitGame,
+  "diversity-dial": DiversityGame,
 };
 
 export default function Game({ slug }) {
