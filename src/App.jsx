@@ -1,14 +1,11 @@
 import { useEffect } from "react";
-import About from "./components/About.jsx";
 import CommandPalette from "./components/CommandPalette.jsx";
 import Footer from "./components/Footer.jsx";
-import Gallery from "./components/Gallery.jsx";
 import Header from "./components/Header.jsx";
-import Hero from "./components/Hero.jsx";
-import Intro from "./components/Intro.jsx";
-import WorkList from "./components/WorkList.jsx";
+import Home from "./pages/Home.jsx";
+import Playground from "./pages/Playground.jsx";
 
-export default function App() {
+export default function App({ path }) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -27,16 +24,10 @@ export default function App() {
 
   return (
     <>
-      <Header />
-      <main>
-        <Hero />
-        <Intro />
-        <WorkList />
-        <Gallery />
-        <About />
-      </main>
+      <Header path={path} />
+      <main>{path === "/playground" ? <Playground /> : <Home />}</main>
       <Footer />
-      <CommandPalette />
+      <CommandPalette path={path} />
     </>
   );
 }

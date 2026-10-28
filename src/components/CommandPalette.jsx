@@ -1,18 +1,20 @@
 import { ArrowUpRight, Copy, CornerDownLeft, Hash, Search } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { NAV, PROJECTS, SITE } from "../data/site.js";
+import { NAV, navHref, PROJECTS, SITE } from "../data/site.js";
 
-function buildActions(close) {
-  const go = (id) => () => {
+function buildActions(close, path) {
+  const go = (item) => () => {
     close();
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const target = item.id && document.getElementById(item.id);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+    else window.location.href = navHref(item, path);
   };
   const open = (url) => () => {
     close();
     window.open(url, "_blank", "noopener");
   };
   return [
-    ...NAV.map(({ id, label }) => ({ group: "Go to", label, icon: Hash, run: go(id) })),
+    ...NAV.map((item) => ({ group: "Go to", label: item.label, icon: Hash, run: go(item) })),
     {
       group: "Contact",
       label: "Copy email address",
@@ -35,7 +37,7 @@ function buildActions(close) {
   ];
 }
 
-export default function CommandPalette() {
+export default function CommandPalette({ path }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState(0);
@@ -43,7 +45,7 @@ export default function CommandPalette() {
   const returnFocus = useRef(null);
 
   const close = () => setOpen(false);
-  const actions = useMemo(() => buildActions(close), []);
+  const actions = useMemo(() => buildActions(close, path), [path]);
   const results = actions.filter((action) =>
     `${action.group} ${action.label} ${action.hint ?? ""}`.toLowerCase().includes(query.trim().toLowerCase()),
   );

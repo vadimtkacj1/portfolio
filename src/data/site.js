@@ -9,8 +9,15 @@ export const SITE = {
 export const NAV = [
   { id: "work", label: "Work" },
   { id: "about", label: "About" },
+  { page: "/playground", label: "Playground" },
   { id: "contact", label: "Contact" },
 ];
+
+export function navHref(item, path) {
+  if (item.page) return item.page;
+  if (item.id === "contact" || path === "/") return `#${item.id}`;
+  return `/#${item.id}`;
+}
 
 export const PROJECTS = [
   {

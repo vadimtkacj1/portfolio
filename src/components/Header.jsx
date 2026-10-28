@@ -1,10 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { NAV, SITE } from "../data/site.js";
+import { NAV, navHref, SITE } from "../data/site.js";
 import { onScrollFrame } from "../hooks/scrollLoop.js";
 import Magnetic from "./Magnetic.jsx";
 
-export default function Header() {
+export default function Header({ path }) {
   const [floating, setFloating] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -28,20 +28,20 @@ export default function Header() {
   return (
     <>
       <header className="header">
-        <a className="header-logo" href="#top" aria-label="V.T. Back to top">
+        <a className="header-logo" href={path === "/" ? "#top" : "/"} aria-label={path === "/" ? "V.T. Back to top" : "V.T. Home"}>
           <span className="header-copy">©</span>
           <span className="header-name">
             <span>V.T.</span>
-            <span>Back to top</span>
+            <span>{path === "/" ? "Back to top" : "Home"}</span>
           </span>
         </a>
         <nav aria-label="Sections">
           <ul className="header-links">
-            {NAV.map(({ id, label }) => (
-              <li key={id}>
+            {NAV.map((item) => (
+              <li key={item.label}>
                 <Magnetic strength={0.25}>
-                  <a href={`#${id}`}>
-                    <span data-magnetic-label>{label}</span>
+                  <a href={navHref(item, path)} aria-current={item.page === path ? "page" : undefined}>
+                    <span data-magnetic-label>{item.label}</span>
                   </a>
                 </Magnetic>
               </li>
@@ -73,10 +73,10 @@ export default function Header() {
       <aside id="menu-panel" className={`menu-panel ${open ? "is-open" : ""}`} aria-hidden={!open} inert={!open}>
         <p className="menu-label">Navigation</p>
         <ul className="menu-links">
-          {NAV.map(({ id, label }) => (
-            <li key={id}>
-              <a href={`#${id}`} onClick={() => setOpen(false)}>
-                {label}
+          {NAV.map((item) => (
+            <li key={item.label}>
+              <a href={navHref(item, path)} onClick={() => setOpen(false)}>
+                {item.label}
               </a>
             </li>
           ))}

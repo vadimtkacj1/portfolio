@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App.jsx";
+import { normalisePath } from "./routes.js";
 
 document.documentElement.classList.add("js");
 
@@ -15,7 +16,7 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 const root = document.getElementById("root");
 const app = (
   <StrictMode>
-    <App />
+    <App path={normalisePath(window.location.pathname)} />
   </StrictMode>
 );
 
