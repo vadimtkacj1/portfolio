@@ -51,7 +51,7 @@ export const ROUTES = [
     path: "/playground",
     title: "Playground · Play with my models · Vadim Tkachenko",
     description:
-      "Draw a digit and watch a neural network read it live in your browser, tell a human expert's retinal vessel mask from my segmentation model's, roll gradient descent into the global minimum, and watch a neural network learn a decision boundary live.",
+      "Draw a digit and watch a neural network read it live in your browser, tell a human expert's retinal vessel mask from my segmentation model's, roll gradient descent into the global minimum, watch a neural network learn a decision boundary live, and try to beat a model that learns your habits.",
   },
   ...PROJECTS.map(caseRoute),
 ];

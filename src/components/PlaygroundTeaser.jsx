@@ -33,6 +33,11 @@ export default function PlaygroundTeaser() {
             <h3>Draw the boundary</h3>
             <p>Place points and watch a neural network learn to separate them in real time.</p>
           </li>
+          <li className="reveal">
+            <span className="service-index">05</span>
+            <h3>Beat the model</h3>
+            <p>Rock, paper, scissors against a model that learns your habits as you play.</p>
+          </li>
         </ul>
         <Magnetic strength={0.4} className="teaser-button">
           <a className="circle-button circle-blue" href="/playground" data-cursor="Play">

@@ -1,6 +1,7 @@
 import BoundaryGame from "../components/BoundaryGame.jsx";
 import DescentGame from "../components/DescentGame.jsx";
 import DigitGame from "../components/DigitGame.jsx";
+import PatternGame from "../components/PatternGame.jsx";
 import SpotGame from "../components/SpotGame.jsx";
 import SplitWords from "../components/SplitWords.jsx";
 
@@ -14,7 +15,7 @@ export default function Playground() {
             <SplitWords text="Play with my models" />
           </h1>
           <p className="page-lead">
-            Four small games about how models learn and what they see. Nothing is sent to a server: everything runs in
+            Five small games about how models learn and what they see. Nothing is sent to a server: everything runs in
             your browser, on models I trained and outputs from my own projects.
           </p>
         </div>
@@ -78,6 +79,22 @@ export default function Playground() {
             </p>
           </div>
           <BoundaryGame />
+        </div>
+      </section>
+
+      <section className="game section" aria-labelledby="pattern-title">
+        <div className="container">
+          <div className="game-head">
+            <span className="service-index">05</span>
+            <h2 id="pattern-title" className="game-title">
+              Beat the model
+            </h2>
+            <p>
+              Rock, paper, scissors against a model that learns your habits while you play. Try to stay random: almost
+              nobody can for long.
+            </p>
+          </div>
+          <PatternGame />
         </div>
       </section>
     </>
