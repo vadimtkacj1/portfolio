@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <>
       <header className="header">
-        <a className="header-logo" href="#top" aria-label="Vadim Tkachenko, back to top">
+        <a className="header-logo" href="#top" aria-label="V.T. Back to top">
           <span className="header-copy">©</span>
           <span className="header-name">
             <span>V.T.</span>
