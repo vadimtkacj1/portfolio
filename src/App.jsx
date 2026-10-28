@@ -4,6 +4,7 @@ import Cursor from "./components/Cursor.jsx";
 import Curtain from "./components/Curtain.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
+import CaseStudy from "./pages/CaseStudy.jsx";
 import Home from "./pages/Home.jsx";
 import Playground from "./pages/Playground.jsx";
 
@@ -27,7 +28,15 @@ export default function App({ path }) {
   return (
     <>
       <Header path={path} />
-      <main>{path === "/playground" ? <Playground /> : <Home />}</main>
+      <main>
+        {path === "/playground" ? (
+          <Playground />
+        ) : path.startsWith("/work/") ? (
+          <CaseStudy slug={path.slice(6)} />
+        ) : (
+          <Home />
+        )}
+      </main>
       <Footer />
       <CommandPalette path={path} />
       <Cursor />

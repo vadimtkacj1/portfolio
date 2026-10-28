@@ -47,9 +47,7 @@ export default function WorkList() {
           {PROJECTS.map((project, index) => (
             <li key={project.slug} className={active === index ? "is-active" : ""}>
               <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener"
+                href={`/work/${project.slug}`}
                 className="work-row"
                 data-cursor="View"
                 onMouseEnter={() => setActive(index)}
@@ -65,7 +63,7 @@ export default function WorkList() {
                 <div className="work-inline-media" aria-hidden="true">
                   <ProjectMedia media={project.media} />
                 </div>
-                <span className="visually-hidden">. {project.title}. Code on GitHub.</span>
+                <span className="visually-hidden">. {project.title}. Read the case study.</span>
               </a>
             </li>
           ))}
