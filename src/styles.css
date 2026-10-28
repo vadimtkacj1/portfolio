@@ -2021,6 +2021,12 @@ kbd {
   }
 }
 
+.game-loading {
+  min-height: clamp(420px, 50vw, 640px);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
 .games-hub {
   padding-top: clamp(56px, 7vw, 100px);
 }

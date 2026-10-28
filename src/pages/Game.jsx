@@ -1,23 +1,16 @@
-import BoundaryGame from "../components/BoundaryGame.jsx";
-import ConvolutionGame from "../components/ConvolutionGame.jsx";
-import DescentGame from "../components/DescentGame.jsx";
-import DigitGame from "../components/DigitGame.jsx";
-import DiversityGame from "../components/DiversityGame.jsx";
-import OverfitGame from "../components/OverfitGame.jsx";
-import PatternGame from "../components/PatternGame.jsx";
-import SpotGame from "../components/SpotGame.jsx";
+import { lazy, Suspense } from "react";
 import SplitWords from "../components/SplitWords.jsx";
 import { GAMES } from "../data/games.js";
 
 const COMPONENTS = {
-  "draw-a-digit": DigitGame,
-  "spot-the-model": SpotGame,
-  descent: DescentGame,
-  "draw-the-boundary": BoundaryGame,
-  "beat-the-model": PatternGame,
-  "be-a-convolution": ConvolutionGame,
-  overfit: OverfitGame,
-  "diversity-dial": DiversityGame,
+  "draw-a-digit": lazy(() => import("../components/DigitGame.jsx")),
+  "spot-the-model": lazy(() => import("../components/SpotGame.jsx")),
+  descent: lazy(() => import("../components/DescentGame.jsx")),
+  "draw-the-boundary": lazy(() => import("../components/BoundaryGame.jsx")),
+  "beat-the-model": lazy(() => import("../components/PatternGame.jsx")),
+  "be-a-convolution": lazy(() => import("../components/ConvolutionGame.jsx")),
+  overfit: lazy(() => import("../components/OverfitGame.jsx")),
+  "diversity-dial": lazy(() => import("../components/DiversityGame.jsx")),
 };
 
 export default function Game({ slug }) {
@@ -42,7 +35,9 @@ export default function Game({ slug }) {
 
       <section className="game section">
         <div className="container">
-          <Component />
+          <Suspense fallback={<div className="game-loading" aria-hidden="true" />}>
+            <Component />
+          </Suspense>
         </div>
       </section>
 
