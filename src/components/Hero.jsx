@@ -1,11 +1,11 @@
 import { ArrowDownRight, Globe } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { SITE } from "../data/site.js";
-import { onScrollFrame, prefersReducedMotion } from "../hooks/scrollLoop.js";
+import { prefersReducedMotion } from "../hooks/scrollLoop.js";
+import HalftonePortrait from "./HalftonePortrait.jsx";
 
 export default function Hero() {
   const trackRef = useRef(null);
-  const photoRef = useRef(null);
 
   useEffect(() => {
     if (prefersReducedMotion()) return undefined;
@@ -31,27 +31,12 @@ export default function Hero() {
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
-    const unsubscribe = onScrollFrame(() => {
-      const y = Math.min(window.scrollY, window.innerHeight);
-      photoRef.current.style.transform = `translate3d(-50%, ${y * 0.25}px, 0)`;
-    });
-    return () => {
-      cancelAnimationFrame(frame);
-      unsubscribe();
-    };
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
-      <img
-        ref={photoRef}
-        className="hero-photo"
-        src="/images/vadim-tkachenko-cutout.webp"
-        width="800"
-        height="773"
-        alt="Vadim Tkachenko"
-        fetchPriority="high"
-      />
+      <HalftonePortrait />
       <div className="hero-pill">
         <span>
           Open to work
