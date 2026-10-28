@@ -91,6 +91,12 @@ export default function HalftonePortrait() {
       const context = canvas.getContext("2d");
       const reduced = prefersReducedMotion();
       const pointer = { x: -9999, y: -9999, active: false };
+      const coarse = window.matchMedia("(pointer: coarse)").matches;
+      const lens = { x: 0, y: 0, r: 0 };
+      const lensCanvas = document.createElement("canvas");
+      const lensContext = lensCanvas.getContext("2d");
+      let visible = true;
+      let pixelRatio = 1;
       let width = 0;
       let height = 0;
       let cell = 0;
@@ -100,13 +106,16 @@ export default function HalftonePortrait() {
 
       const resize = () => {
         const rect = canvas.getBoundingClientRect();
-        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
         width = rect.width;
         height = rect.height;
         cell = width / columns;
-        canvas.width = Math.round(width * ratio);
-        canvas.height = Math.round(height * ratio);
-        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        canvas.width = lensCanvas.width = Math.round(width * pixelRatio);
+        canvas.height = lensCanvas.height = Math.round(height * pixelRatio);
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        lensContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        lens.x = width / 2;
+        lens.y = height * 0.4;
         request();
       };
 
@@ -115,11 +124,40 @@ export default function HalftonePortrait() {
         if (!start) start = now;
         const intro = reduced ? 1 : Math.min(1, (now - start) / 1500);
         const scroll = Math.min(1, window.scrollY / Math.max(1, window.innerHeight));
-        const radius = width * 0.2;
         let moving = intro < 1 || scroll !== lastScroll;
         lastScroll = scroll;
 
+        const inside = pointer.active && pointer.x >= 0 && pointer.x <= width && pointer.y >= 0 && pointer.y <= height;
+        let targetX = pointer.x;
+        let targetY = pointer.y;
+        let open = inside;
+        if (coarse && !reduced) {
+          const t = now / 1000;
+          targetX = width * (0.5 + 0.16 * Math.sin(t * 0.45));
+          targetY = height * (0.36 + 0.1 * Math.sin(t * 0.71 + 1.2));
+          open = intro >= 1 && visible;
+          if (visible) moving = true;
+        }
+        const targetRadius = open ? width * 0.17 * Math.max(0, 1 - scroll * 2.5) : 0;
+        lens.x += (targetX - lens.x) * (coarse ? 1 : 0.22);
+        lens.y += (targetY - lens.y) * (coarse ? 1 : 0.22);
+        lens.r += (targetRadius - lens.r) * 0.14;
+        if (Math.abs(targetRadius - lens.r) > 0.3 || (lens.r > 1.5 && Math.hypot(targetX - lens.x, targetY - lens.y) > 0.5)) moving = true;
+        const radius = lens.r * 1.3;
+
         context.clearRect(0, 0, width, height);
+        if (lens.r > 1.5) {
+          lensContext.globalCompositeOperation = "source-over";
+          lensContext.clearRect(0, 0, width, height);
+          lensContext.drawImage(image, 0, 0, width, height);
+          lensContext.globalCompositeOperation = "destination-in";
+          const gradient = lensContext.createRadialGradient(lens.x, lens.y, lens.r * 0.6, lens.x, lens.y, lens.r);
+          gradient.addColorStop(0, "rgba(0, 0, 0, 1)");
+          gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+          lensContext.fillStyle = gradient;
+          lensContext.fillRect(0, 0, width, height);
+          context.drawImage(lensCanvas, 0, 0, width, height);
+        }
         context.fillStyle = INK;
         context.beginPath();
         for (const dot of dots) {
@@ -127,12 +165,12 @@ export default function HalftonePortrait() {
           if (reveal <= 0) continue;
           let x = dot.u * width;
           let y = dot.v * height;
-          if (!reduced && pointer.active) {
-            const dx = x + dot.ox - pointer.x;
-            const dy = y + dot.oy - pointer.y;
+          if (!reduced && lens.r > 1.5) {
+            const dx = x + dot.ox - lens.x;
+            const dy = y + dot.oy - lens.y;
             const distance = Math.hypot(dx, dy);
             if (distance < radius && distance > 0.01) {
-              const force = (1 - distance / radius) ** 2 * 7;
+              const force = (1 - distance / radius) ** 2 * 5;
               dot.ox += (dx / distance) * force;
               dot.oy += (dy / distance) * force;
             }
@@ -172,6 +210,11 @@ export default function HalftonePortrait() {
 
       const observer = new ResizeObserver(resize);
       observer.observe(canvas);
+      const visibility = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        request();
+      });
+      visibility.observe(canvas);
       if (!reduced) {
         window.addEventListener("pointermove", onMove, { passive: true });
         window.addEventListener("scroll", onScroll, { passive: true });
@@ -182,6 +225,7 @@ export default function HalftonePortrait() {
       cleanup = () => {
         cancelAnimationFrame(frame);
         observer.disconnect();
+        visibility.disconnect();
         window.removeEventListener("pointermove", onMove);
         window.removeEventListener("scroll", onScroll);
         document.removeEventListener("pointerleave", onLeave);
