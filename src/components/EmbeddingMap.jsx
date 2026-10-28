@@ -130,7 +130,9 @@ export default function EmbeddingMap() {
         context.arc(px, py, hit ? 6 : 3 + point.depth * 2, 0, Math.PI * 2);
         context.fillStyle = hit ? "#455ce9" : `rgba(28, 29, 32, ${0.35 + point.depth * 0.4})`;
         context.fill();
-        context.font = `${hit ? 600 : 400} ${hit ? 16 : 14}px 'Inter Tight Variable', sans-serif`;
+        const narrow = width < 560;
+        if (!hit && narrow && point.depth < 0.75) return;
+        context.font = `${hit ? 600 : 400} ${hit ? (narrow ? 14 : 16) : narrow ? 12 : 14}px 'Inter Tight Variable', sans-serif`;
         context.fillStyle = hit ? "#1c1d20" : "rgba(28, 29, 32, 0.6)";
         context.fillText(point.label, px, py - 12);
       });
@@ -190,7 +192,7 @@ export default function EmbeddingMap() {
             <SplitWords text="Move to search my stack" />
           </h2>
           <p className="embedding-lead">
-            Every tool and result from my projects, placed by topic. Your cursor is the query: the nearest {TOP_K}
+            Every tool and result from my projects, placed by topic. Your cursor is the query: the nearest {TOP_K}{" "}
             light up, the way a retriever picks context for a language model.
           </p>
         </div>

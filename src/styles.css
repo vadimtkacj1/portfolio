@@ -3161,7 +3161,13 @@ html.is-loading .curtain-label {
   }
 
   .footer-cta {
-    right: 0;
+    position: static;
+    display: inline-block;
+    margin: 28px 0 -40px;
+  }
+
+  .footer-cta .circle-button {
+    width: 120px;
   }
 
   .footer-pills {
