@@ -1,4 +1,5 @@
 import { CASES } from "./data/cases.js";
+import { GAMES } from "./data/games.js";
 import { PROJECTS } from "./data/site.js";
 
 export const ORIGIN = "https://portfolio-chi-teal-59.vercel.app";
@@ -53,6 +54,11 @@ export const ROUTES = [
     description:
       "Draw a digit and watch a neural network read it live in your browser, tell a human expert's retinal vessel mask from my segmentation model's, roll gradient descent into the global minimum, watch a neural network learn a decision boundary live, and try to beat a model that learns your habits.",
   },
+  ...GAMES.map((game) => ({
+    path: `/playground/${game.slug}`,
+    title: `${game.title} · ML game · Vadim Tkachenko`,
+    description: game.description,
+  })),
   ...PROJECTS.map(caseRoute),
 ];
 

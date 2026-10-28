@@ -5,6 +5,7 @@ import Curtain from "./components/Curtain.jsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import CaseStudy from "./pages/CaseStudy.jsx";
+import Game from "./pages/Game.jsx";
 import Home from "./pages/Home.jsx";
 import Playground from "./pages/Playground.jsx";
 
@@ -31,6 +32,8 @@ export default function App({ path }) {
       <main>
         {path === "/playground" ? (
           <Playground />
+        ) : path.startsWith("/playground/") ? (
+          <Game slug={path.slice(12)} />
         ) : path.startsWith("/work/") ? (
           <CaseStudy slug={path.slice(6)} />
         ) : (

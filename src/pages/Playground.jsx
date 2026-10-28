@@ -1,10 +1,6 @@
-import BoundaryGame from "../components/BoundaryGame.jsx";
-import ConvolutionGame from "../components/ConvolutionGame.jsx";
-import DescentGame from "../components/DescentGame.jsx";
-import DigitGame from "../components/DigitGame.jsx";
-import PatternGame from "../components/PatternGame.jsx";
-import SpotGame from "../components/SpotGame.jsx";
+import { ArrowUpRight } from "lucide-react";
 import SplitWords from "../components/SplitWords.jsx";
+import { GAMES } from "../data/games.js";
 
 export default function Playground() {
   return (
@@ -16,102 +12,31 @@ export default function Playground() {
             <SplitWords text="Play with my models" />
           </h1>
           <p className="page-lead">
-            Six small games about how models learn and what they see. Nothing is sent to a server: everything runs in
-            your browser, on models I trained and outputs from my own projects.
+            {GAMES.length} small games about how models learn and what they see. Nothing is sent to a server:
+            everything runs in your browser, on models I trained and outputs from my own projects.
           </p>
         </div>
       </section>
 
-      <section className="game section" aria-labelledby="digit-title">
+      <section className="section games-hub" aria-label="Games">
         <div className="container">
-          <div className="game-head">
-            <span className="service-index">01</span>
-            <h2 id="digit-title" className="game-title">
-              Draw a digit
-            </h2>
-            <p>Write any digit with your mouse or finger. The network reads it as you draw.</p>
-          </div>
-          <DigitGame />
-        </div>
-      </section>
-
-      <section className="game section" aria-labelledby="spot-title">
-        <div className="container">
-          <div className="game-head">
-            <span className="service-index">02</span>
-            <h2 id="spot-title" className="game-title">
-              Spot the model
-            </h2>
-            <p>
-              Each round shows a retinal photo and two vessel masks. One is drawn by a human expert, the other by my
-              DeepLabV3+ model. Pick the model.
-            </p>
-          </div>
-          <SpotGame />
-        </div>
-      </section>
-
-      <section className="game section" aria-labelledby="descent-title">
-        <div className="container">
-          <div className="game-head">
-            <span className="service-index">03</span>
-            <h2 id="descent-title" className="game-title">
-              Descent
-            </h2>
-            <p>
-              Training is a ball rolling downhill on a loss landscape. Pick a start, a learning rate and momentum, and
-              try to reach the deepest basin in as few steps as you can.
-            </p>
-          </div>
-          <DescentGame />
-        </div>
-      </section>
-
-      <section className="game section" aria-labelledby="boundary-title">
-        <div className="container">
-          <div className="game-head">
-            <span className="service-index">04</span>
-            <h2 id="boundary-title" className="game-title">
-              Draw the boundary
-            </h2>
-            <p>
-              A small neural network learns to separate blue points from black ones while you watch. Click to add
-              points, change its width, and find the smallest network that still solves the spiral.
-            </p>
-          </div>
-          <BoundaryGame />
-        </div>
-      </section>
-
-      <section className="game section" aria-labelledby="pattern-title">
-        <div className="container">
-          <div className="game-head">
-            <span className="service-index">05</span>
-            <h2 id="pattern-title" className="game-title">
-              Beat the model
-            </h2>
-            <p>
-              Rock, paper, scissors against a model that learns your habits while you play. Try to stay random: almost
-              nobody can for long.
-            </p>
-          </div>
-          <PatternGame />
-        </div>
-      </section>
-
-      <section className="game section" aria-labelledby="conv-title">
-        <div className="container">
-          <div className="game-head">
-            <span className="service-index">06</span>
-            <h2 id="conv-title" className="game-title">
-              Be a convolution
-            </h2>
-            <p>
-              Write the 3 × 3 filter yourself and see the feature map a convolutional network would compute from a
-              retinal scan, or from your own photo.
-            </p>
-          </div>
-          <ConvolutionGame />
+          <ul className="games-grid">
+            {GAMES.map((game, index) => (
+              <li key={game.slug} className="reveal">
+                <a className="games-card" href={`/playground/${game.slug}`} data-cursor="Play">
+                  <span className="games-card-top">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span>{game.topic}</span>
+                  </span>
+                  <span className="games-card-title">{game.title}</span>
+                  <span className="games-card-text">{game.teaser}</span>
+                  <span className="games-card-arrow" aria-hidden="true">
+                    <ArrowUpRight size={22} />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </>

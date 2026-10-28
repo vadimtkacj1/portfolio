@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { GAMES } from "../data/games.js";
 import Magnetic from "./Magnetic.jsx";
 import SplitWords from "./SplitWords.jsx";
 
@@ -13,36 +14,15 @@ export default function PlaygroundTeaser() {
           </h2>
         </div>
         <ul className="teaser-list">
-          <li className="reveal">
-            <span className="service-index">01</span>
-            <h3>Draw a digit</h3>
-            <p>A network I trained reads your handwriting live, right in the browser.</p>
-          </li>
-          <li className="reveal">
-            <span className="service-index">02</span>
-            <h3>Spot the model</h3>
-            <p>Twelve retinal scans. Tell a human expert's vessel mask from my model's.</p>
-          </li>
-          <li className="reveal">
-            <span className="service-index">03</span>
-            <h3>Descent</h3>
-            <p>Tune the learning rate and momentum and roll a model into the global minimum.</p>
-          </li>
-          <li className="reveal">
-            <span className="service-index">04</span>
-            <h3>Draw the boundary</h3>
-            <p>Place points and watch a neural network learn to separate them in real time.</p>
-          </li>
-          <li className="reveal">
-            <span className="service-index">05</span>
-            <h3>Beat the model</h3>
-            <p>Rock, paper, scissors against a model that learns your habits as you play.</p>
-          </li>
-          <li className="reveal">
-            <span className="service-index">06</span>
-            <h3>Be a convolution</h3>
-            <p>Write a 3 × 3 filter and watch the feature map a CNN would see.</p>
-          </li>
+          {GAMES.map((game, index) => (
+            <li key={game.slug} className="reveal">
+              <a href={`/playground/${game.slug}`} data-cursor="Play">
+                <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{game.title}</h3>
+                <p>{game.teaser}</p>
+              </a>
+            </li>
+          ))}
         </ul>
         <Magnetic strength={0.4} className="teaser-button">
           <a className="circle-button circle-blue" href="/playground" data-cursor="Play">
